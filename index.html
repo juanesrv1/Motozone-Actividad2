@@ -1,0 +1,336 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>MotoZone</title>
+  <style>
+    :root{--accent:#e63946;--muted:#666;--bg:#f8f9fa;--card:#fff}
+    *{box-sizing:border-box}
+    body{font-family:Arial, Helvetica, sans-serif;margin:0;background:var(--bg);color:#222}
+
+    .banner{
+      background-image:url('assets/MotoZone.png');
+      background-size:cover;
+      background-position:center;
+      color:#fff;
+      padding:60px 36px;
+      display:flex;
+      align-items:center;
+      gap:22px;
+      position:relative;
+    }
+
+    .banner::before{
+      content:"";
+      position:absolute;
+      inset:0;
+      background:rgba(0,0,0,0.45);
+      z-index:0;
+    }
+
+    .logo{
+      display:flex;
+      align-items:center;
+      gap:14px;
+      position:relative;
+      z-index:1;
+    }
+
+    .logo img{
+      width:90px;
+      height:90px;
+      object-fit:cover;
+      border-radius:50%;
+      border:2px solid rgba(255,255,255,0.8);
+      box-shadow:0 4px 10px rgba(0,0,0,0.3);
+    }
+
+    .brand{
+      display:flex;
+      flex-direction:column;
+      justify-content:center;
+    }
+
+    .brand h1{margin:0;font-size:26px}
+    .brand p{margin:4px 0 0;font-size:14px;opacity:.9}
+
+    .banner small{
+      position:relative;
+      margin-left:auto;
+      font-size:14px;
+      opacity:.95;
+      z-index:1;
+    }
+
+    nav{
+      background:var(--card);
+      box-shadow:0 1px 4px rgba(0,0,0,0.06);
+      position:sticky;
+      top:0;
+      z-index:50;
+    }
+
+    .nav-inner{
+      max-width:1100px;
+      margin:0 auto;
+      display:flex;
+      align-items:center;
+      justify-content:space-between;
+      padding:10px 16px;
+    }
+
+    .menu{
+      display:flex;
+      gap:12px;
+      transition:max-height 0.3s ease;
+      overflow:hidden;
+    }
+
+    .menu a{
+      padding:8px 12px;
+      text-decoration:none;
+      color:#111;
+      border-radius:6px;
+      font-weight:600;
+      display:block;
+    }
+
+    .menu a:hover{
+      background:#f8d7da;
+      color:var(--accent);
+    }
+
+    .btn-primary{
+      background:var(--accent);
+      color:#fff;
+      padding:8px 12px;
+      border-radius:8px;
+      text-decoration:none;
+    }
+
+    .hamburger{
+      display:none;
+      flex-direction:column;
+      gap:4px;
+      cursor:pointer;
+    }
+
+    .hamburger span{
+      width:25px;
+      height:3px;
+      background:#111;
+      border-radius:3px;
+      transition:all 0.3s ease;
+    }
+
+    .container{max-width:1100px;margin:22px auto;padding:0 16px}
+    .card{background:var(--card);padding:16px;border-radius:10px;box-shadow:0 6px 18px rgba(20,40,80,0.04);margin-bottom:18px}
+
+    .services{display:grid;grid-template-columns:1fr 1fr;gap:12px}
+    .service{padding:12px;border-radius:8px;border:1px dashed #e6eefb}
+
+    .contact-list{list-style:none;padding:0;margin:0}
+    .contact-list li{margin-bottom:8px}
+
+    label{display:block;font-size:13px;margin:8px 0 4px}
+    input[type=text],input[type=email],textarea{
+      width:100%;
+      padding:8px;
+      border-radius:6px;
+      border:1px solid #ddd;
+    }
+
+    button{cursor:pointer}
+
+    footer{margin:28px 0 60px;text-align:center;color:var(--muted)}
+
+    @media (max-width:900px){
+      .banner{flex-direction:column;align-items:flex-start}
+      .banner small{margin-left:0;margin-top:10px}
+      .hamburger{display:flex}
+      .menu{flex-direction:column;width:100%;background:var(--card);max-height:0}
+      .menu.show{max-height:400px}
+      .services{grid-template-columns:1fr}
+    }
+  </style>
+</head>
+<body>
+  <header class="banner">
+    <div class="logo">
+      <img src="assets/logo-moto.png" alt="Logo MotoZone">
+      <div class="brand">
+        <h1>MotoZone</h1>
+        <p>Tienda online de artículos y accesorios para tu moto</p>
+      </div>
+    </div>
+    <small>Artículos y Accesorios</small>
+  </header>
+
+  <nav>
+    <div class="nav-inner">
+      <div style="font-weight:700;color:var(--accent)">MotoZone</div>
+      <div class="hamburger" onclick="toggleMenu()" aria-label="Menú">
+        <span></span><span></span><span></span>
+      </div>
+      <div class="menu" id="menu">
+        <a href="#nuestra">Nuestra Tienda On-line</a>
+        <a href="#servicios">Servicios</a>
+        <a href="#contacto">Contáctenos</a>
+        <a href="#cotizacion" class="btn-primary">Solicitud de Cotización</a>
+        <a href="#cuento">Diseña tu cuento</a>
+      </div>
+    </div>
+  </nav>
+
+  <main class="container">
+    <section id="nuestra" class="card">
+      <h2>Nuestra Tienda On-line</h2>
+      <p><strong>MotoZone, todo para tu moto.</strong></p>
+      <p>Somos una tienda especializada en la venta de <strong>artículos y accesorios para moto</strong> que garantizan seguridad, confort y estilo en cada viaje. En <strong>MotoZone</strong> ofrecemos productos de alta calidad como cascos certificados, chaquetas con protecciones, guantes, botas, rodilleras, coderas, mochilas y accesorios prácticos como maletas, luces LED y soportes para celular.</p>
+      <p>Nos apasiona el motociclismo y trabajamos para brindar una <strong>atención personalizada</strong>, ayudándote a elegir el equipo ideal según tu tipo de moto y estilo de conducción. Realizamos <strong>envíos a todo el país</strong> con la confianza y respaldo que todo motociclista necesita.</p>
+      <p>Más que una tienda, <strong>MotoZone</strong> es una comunidad que comparte la pasión por rodar con libertad y seguridad.</p>
+
+      <h3>Integrantes del grupo</h3>
+      <ul>
+        <li>Juan Esteban Rendón Vélez</li>
+      </ul>
+    </section>
+
+    <section id="servicios" class="card">
+      <h2>Servicios</h2>
+      <div class="services">
+        <div class="service">
+          <h4>Envíos Nacionales</h4>
+          <p>Realizamos envíos rápidos a todo el país, con seguimiento en tiempo real y garantía de entrega segura.</p>
+        </div>
+        <div class="service">
+          <h4>Asesoría Personalizada</h4>
+          <p>Te orientamos para escoger los mejores accesorios según tu estilo de conducción y tipo de motocicleta.</p>
+        </div>
+      </div>
+    </section>
+
+    <section id="contacto" class="card">
+      <h2>Contáctenos</h2>
+      <ul class="contact-list">
+        <li><strong>WhatsApp:</strong> <a href="https://wa.me/573012565362" target="_blank">+57 301 2565362</a></li>
+        <li><strong>Celular:</strong> +57 3012565362</li>
+        <li><strong>Dirección:</strong> San Antonio de Prado, Medellín</li>
+      </ul>
+      <h4>Ubicación en el mapa</h4>
+      <iframe
+        src="https://www.google.com/maps/embed?pb=!1m23!1m12!1m3!1d3966.639621515319!2d-75.64832022500994!3d6.1789697938084815!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!4m8!3e6!4m5!1s0x8e468182a3495843%3A0xad25cb0b1d7b386b!2sSala%20de%20Ventas%20Campura%E2%80%A6!3m2!1d6.1782236!2d-75.6448269!4m0!5e0!3m2!1ses-419!2sco!4v1759718512099!5m2!1ses-419!2sco"
+        width="100%" height="200" style="border:0;" allowfullscreen="" loading="lazy"></iframe>
+    </section>
+
+    <section id="cotizacion" class="card">
+      <h2>Solicitud de Cotización</h2>
+      <p>Complete el formulario para obtener una cotización estimada de los productos que desee.</p>
+      <form id="formCotizacion" onsubmit="event.preventDefault();mostrarCotizacion();">
+        <label for="nombre">Nombre completo</label>
+        <input type="text" id="nombre" required>
+
+        <label for="email">Correo electrónico</label>
+        <input type="email" id="email" required>
+
+        <label for="producto">Producto</label>
+        <input type="text" id="producto" required>
+
+        <label for="cantidad">Cantidad</label>
+        <input type="text" id="cantidad" required>
+
+        <label for="mensaje">Mensaje adicional</label>
+        <textarea id="mensaje" rows="3"></textarea>
+
+        <button class="btn-primary" type="submit">Generar cotización</button>
+      </form>
+
+      <div id="resultado" style="margin-top:12px;font-weight:bold;"></div>
+    </section>
+
+<section id="cuento" class="card">
+  <h2>Diseña tu cuento</h2>
+  <p>Completa el formulario y crea un cuento personalizado con tus datos.</p>
+
+  <form id="formCuento" onsubmit="event.preventDefault();crearCuento();">
+    <label for="nombreCuento">Nombres y Apellidos:</label>
+    <input type="text" id="nombreCuento" required>
+
+    <label for="apodo">Apodo:</label>
+    <input type="text" id="apodo" required>
+
+    <label for="cabello">Color de Cabello:</label>
+    <input type="text" id="cabello" required>
+
+    <label for="ojos">Color de Ojos:</label>
+    <input type="text" id="ojos" required>
+
+    <label for="edad">Edad:</label>
+    <input type="number" id="edad" required>
+
+    <label for="hobby">Hobby:</label>
+    <input type="text" id="hobby" required>
+
+    <button class="btn-primary" type="submit">Continuar</button>
+  </form>
+
+  <div id="cuentoResultado" style="margin-top:16px;font-size:16px;font-weight:500;line-height:1.5;"></div>
+</section>
+
+<script>
+  function crearCuento(){
+    const nombre = document.getElementById('nombreCuento').value;
+    const apodo = document.getElementById('apodo').value;
+    const cabello = document.getElementById('cabello').value;
+    const ojos = document.getElementById('ojos').value;
+    const edad = document.getElementById('edad').value;
+    const hobby = document.getElementById('hobby').value;
+
+    const cuento = `
+      En un pequeño pueblo escondido entre montañas, vivía alguien muy especial llamado <strong>${nombre}</strong>, 
+      aunque todos lo conocían como <strong>${apodo}</strong>. 
+      Desde lejos era imposible no reconocerlo: su cabello <strong>${cabello}</strong> brillaba bajo el sol 
+      y sus ojos <strong>${ojos}</strong> guardaban mil historias que aún no habían sido contadas. 
+      A la edad de <strong>${edad}</strong> años, ${apodo} tenía un pasatiempo único: <strong>${hobby}</strong>, 
+      y eso lo hacía diferente a todos.<br><br>
+
+      Cada mañana, al despertar, ${apodo} miraba por la ventana soñando con descubrir nuevos mundos. 
+      Y sin importar el clima, siempre encontraba una razón para transformar un día común en una aventura extraordinaria. 
+      Con una sonrisa en el rostro y el corazón lleno de energía, salía a recorrer caminos que solo él conocía.<br><br>
+
+      Un día, mientras seguía su rutina favorita, algo inesperado sucedió. 
+      Una suave brisa susurró su nombre: “<strong>${apodo}</strong>…”. Era como si el viento mismo le hablara. <br><br>
+      Intrigado, decidió seguir ese llamado. Caminó entre senderos verdes, ríos cantarines y árboles que parecían aplaudir a su paso. <br><br>
+
+      Fue entonces cuando descubrió un lugar mágico, donde el cielo tenía más colores que un arcoíris 
+      y el tiempo parecía detenerse. Allí comprendió que su verdadera fuerza no estaba en la suerte ni en el destino… 
+      sino en su forma única de ver la vida. <br><br>
+
+      ${apodo}, con su cabello <strong>${cabello}</strong> y sus ojos <strong>${ojos}</strong>, 
+      se convirtió en el protagonista de su propia historia: 
+      una historia que no necesitaba un final, porque apenas estaba comenzando.
+    `;
+
+    document.getElementById('cuentoResultado').innerHTML = cuento;
+    document.getElementById('formCuento').reset();
+  }
+</script>
+
+
+  </main>
+  
+
+  <footer>
+    <small>© 2025 MotoZone | Desarrollado por: Juan Esteban Rendón Vélez</small>
+  </footer>
+
+  <script>
+    function toggleMenu(){
+      const menu = document.getElementById('menu');
+      menu.classList.toggle('show');
+    }
+
+  </script>
+</body>
+</html>
